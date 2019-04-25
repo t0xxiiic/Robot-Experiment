@@ -105,8 +105,9 @@ public class Clicker {
 
     public static void changeDate(Robot robot){
         try{
+
             /*char[] hours = MainClass.timeEntered.substring(0,1).toCharArray(),
-                    minutes = MainClass.timeEntered.substring(2).toCharArray();*/
+                    minutes = MainClass.timeEntered.substring(2).toCharArray();
             Thread.sleep(delay);
             robot.keyPress(KeyEvent.VK_WINDOWS);
             robot.keyRelease(KeyEvent.VK_WINDOWS);
@@ -116,7 +117,7 @@ public class Clicker {
             Thread.sleep(delay);
             robot.mouseMove(1500,710); // Move to "Change" Button in the date & time settings
             leftClick();
-            /*Thread.sleep(delay);
+            Thread.sleep(delay);
             robot.mouseMove(1250, 730); // Move to the hours
             leftClick();
 
@@ -134,18 +135,17 @@ public class Clicker {
             Thread.sleep(delay);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.mouseMove(1690, 810); // Move to the "Change" button
-            leftClick(); */
-
-
+            leftClick(); */ //Old code - tried to change the date using the robot
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static void systemDate(String date){
+    public static void systemTimeAndDate(String date, String time){
         try{
-            Runtime.getRuntime().exec("cmd /C time " + date); // dd-MM-yy
-            System.out.println("Time has changed to: " + date);
+            Runtime.getRuntime().exec("cmd /C date " + date);
+            Runtime.getRuntime().exec("cmd /C time " + time);
+            System.out.println("Time has changed to: " + time + "\nThe date is: " + date);
         }catch (Exception e){
             e.printStackTrace();
         }
