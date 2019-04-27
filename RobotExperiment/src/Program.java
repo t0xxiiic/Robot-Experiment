@@ -1,5 +1,3 @@
-import sun.applet.Main;
-
 import java.awt.*;
 
 public class Program {
@@ -18,6 +16,6 @@ public class Program {
 //        click.productButtons(robot);
         click.enterProduct(robot);
         click.correctLastProduct(robot);
-//        click.finishOrder(robot);
+        click.finishOrder(robot);
     }
 }

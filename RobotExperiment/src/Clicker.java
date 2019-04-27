@@ -153,7 +153,8 @@ public class Clicker {
 
     public static void finishOrder(Robot robot){
         try{
-            robot.mouseMove(35,55);
+            //robot.mouseMove(35,55); // upload to main program
+            robot.mouseMove(100,165); // delete order
             leftClick();
         }catch (Exception e){
             e.printStackTrace();

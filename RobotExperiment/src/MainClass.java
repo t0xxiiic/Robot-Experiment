@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,7 +33,6 @@ public class MainClass {
         startDate = scanner.nextLine();
         System.out.println("Please enter end date:");
         endDate = scanner.nextLine();
-        scanner.close();
 
         file = openFile();
         getReceipts(file);
@@ -54,10 +54,11 @@ public class MainClass {
 
         System.out.println("  Bills For " + startDate + " are: \n" + "````````````````````````");
         for(int i = 0; i < time.size(); i++){
-            System.out.println("Amount("+ (i+1) + "): " + cleanAmounts.get(i) + "Ð»Ð². " + "@ " + time.get(i) + "Ñ‡.");
+            System.out.println("Amount("+ (i+1) + "): " + cleanAmounts.get(i) + "ëâ. " + "@ " + time.get(i) + "÷.");
         }
 
         writeReceiptsToFile();
+        ejectButton();
 
         System.out.print("If you are sure enter 'y': ");
         if(scanner.nextLine().equals("y")){
@@ -67,13 +68,12 @@ public class MainClass {
                 df.format(amountEntered);
                 System.out.println(amountEntered);
                 testProductPicker();
-                Program prog = new Program();
-                prog.open();
+                /*Program prog = new Program();
+                prog.open();*/
 //                amountEntered = 0.00;
             }
         }
-
-
+        System.exit(0);
         /*while(programWorking) {
             DecimalFormat df = new DecimalFormat("####0.00");
             Scanner scanner = new Scanner(System.in);
@@ -140,7 +140,7 @@ public class MainClass {
                 if(bufferedReaderString.contains(endDate)){
                     break;
                 }
-                if (bufferedReaderString.contains("ÐžÐ±Ñ‰Ð° ÑÑƒÐ¼Ð°")) {
+                if (bufferedReaderString.contains("Îáùà ñóìà")) {
                     container = bufferedReaderString.substring(25);
                     //System.out.println(container);
                     amount.add(container);
@@ -165,7 +165,7 @@ public class MainClass {
             bufferedWriter.write("````````````````````````");
             bufferedWriter.newLine();
             for(int i = 0; i < time.size(); i++){
-                bufferedWriter.write("Amount("+ (i+1) + "): " + cleanAmounts.get(i) + "Ð»Ð². " + "@ " + time.get(i) + "Ñ‡.");
+                bufferedWriter.write("Amount("+ (i+1) + "): " + cleanAmounts.get(i) + "ëâ. " + "@ " + time.get(i) + "÷.");
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
@@ -188,6 +188,18 @@ public class MainClass {
             cleanAmounts.add(Double.parseDouble(amount.get(i).substring(counter)));
             counter = 0;
         }
+    }
+
+    public static void ejectButton(){
+        EjectButton ejectButtonFrame = new EjectButton();
+        ejectButtonFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ejectButtonFrame.setResizable(false);
+        ejectButtonFrame.setSize(216,105);
+        ejectButtonFrame.setLocation(720,25);
+        ejectButtonFrame.setAlwaysOnTop(true);
+        ejectButtonFrame.setUndecorated(true);
+        ejectButtonFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+        ejectButtonFrame.setVisible(true);
     }
 }
 
